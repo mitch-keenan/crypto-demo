@@ -68,7 +68,7 @@ class TokenOwnersTracker {
 	}
 }
 
-const getOwners = async (contractId: string, tokenId: BigNumberish) => {
+const getNFTOwners = async (contractId: string, tokenId: BigNumberish) => {
 	const sdk = new ThirdwebSDK("goerli");
 	const contract = sdk.getEdition(contractId);
 	const events = await contract.events.getEvents(Erc1155Events.TransferSingle, {
@@ -80,4 +80,4 @@ const getOwners = async (contractId: string, tokenId: BigNumberish) => {
 	return owners.getList();
 };
 
-export default getOwners;
+export default getNFTOwners;

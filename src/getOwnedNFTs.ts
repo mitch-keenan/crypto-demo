@@ -1,6 +1,6 @@
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
-const getOwned = async (contractId: string, wallet: string) => {
+const getOwnedNFTs = async (contractId: string, wallet: string) => {
 	const sdk = new ThirdwebSDK("goerli");
 	const contract = sdk.getEdition(contractId);
 	const owned = await contract.getOwned(wallet);
@@ -12,4 +12,4 @@ const getOwned = async (contractId: string, wallet: string) => {
 	}));
 };
 
-export default getOwned;
+export default getOwnedNFTs;
