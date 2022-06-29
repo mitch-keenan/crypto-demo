@@ -14,3 +14,50 @@ This demo shows off two proof of concept functions: [getOwnedNFTs](src/getOwnedN
 ## Running
 
 `yarn start`
+
+## Example Output
+
+### `getNFTOwners`
+
+```json
+// getNFTOwners(<contractID>, <tokenID>)
+[
+  {
+    "address": "0x8569Fc3052EAC955A946872Bec4142B07840fA3A",
+    "balance": 9
+  },
+  {
+    "address": "0x7B6a2D483b22976C1a1447E57b4f7C97B682569f",
+    "balance": 1
+  }
+]
+```
+
+### `getOwnedNFTs`
+
+```json
+// getOwnedNFTs(<contractID>, <walletID>)
+[
+	{
+		"name": "Mitch Test NFT",
+		"description": "",
+		"image": "https://gateway.ipfscdn.io/ipfs/QmYfHtBbjHjXU5YdHnjZeSCVkKBrsjkawfPGNDrxBHdtpn/0.png",
+		"external_url": "",
+		"id": 0,
+		"uri": "ipfs://QmbRmVBoi2zUuyXfHhNmwYfgUKo3bNmHQTwsBeiDu3UPCC/0",
+		"background_color": "",
+		"supply": 10,
+		"quantityOwned": 9
+	},
+	{
+		"name": "Mitch Test NFT 2",
+		"description": "",
+		"external_url": "",
+		"id": 1,
+		"uri": "ipfs://Qmb1ygdWHXdTH9pX4KTHL5pEPasgwCa4yy9v2pTQoEirMm/0",
+		"background_color": "",
+		"supply": 3,
+		"quantityOwned": 3
+	}
+]
+```
