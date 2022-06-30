@@ -40,10 +40,10 @@ class WalletTracker {
 }
 
 class TokenOwnersTracker {
-	tokenId: BigNumberish;
+	tokenId: BigNumberish = null;
 	private owners: { [key: string]: WalletTracker } = {};
 
-	constructor(tokenId: BigNumberish) {
+	constructor(tokenId?: BigNumberish) {
 		this.tokenId = tokenId;
 		this.processEvent = this.processEvent.bind(this);
 	}
@@ -56,7 +56,8 @@ class TokenOwnersTracker {
 	}
 
 	processEvent(event: EventTransferSingle) {
-		if (!event.data.id.eq(this.tokenId)) return;
+		// If this tracker is restricted to a particular token id, only look at those
+		if (this.tokenId != null && !event.data.id.eq(this.tokenId)) return;
 		this._getWallet(event.data.from).processTransfer(event);
 		this._getWallet(event.data.to).processTransfer(event);
 	}
@@ -68,7 +69,13 @@ class TokenOwnersTracker {
 	}
 }
 
-const getNFTOwners = async (contractId: string, tokenId: BigNumberish) => {
+/**
+ *
+ * @param contractId The address of the contract
+ * @param tokenId (Optional) The ID of the NFT within the contract (typically an index starting at 0). If omitted all tokens are considered.
+ * @returns a list of wallet/balance pairs
+ */
+const getNFTOwners = async (contractId: string, tokenId?: BigNumberish) => {
 	const sdk = new ThirdwebSDK("goerli");
 	const contract = sdk.getEdition(contractId);
 	const events = await contract.events.getEvents(Erc1155Events.TransferSingle, {
