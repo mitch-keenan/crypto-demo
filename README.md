@@ -19,7 +19,21 @@ This demo shows off two proof of concept functions: [getOwnedNFTs](src/getOwnedN
 
 ### `getNFTOwners`
 
+Can be used with or without a "tokenId" to scope the list of owners to a specific token within the contract, or to simply get the list of all owners of any token within the contract.
+
 ```json
+// getNFTOwners(<contractID>)
+[
+  {
+    "address": "0x8569Fc3052EAC955A946872Bec4142B07840fA3A",
+    "balance": 12
+  },
+  {
+    "address": "0x7B6a2D483b22976C1a1447E57b4f7C97B682569f",
+    "balance": 1
+  }
+]
+
 // getNFTOwners(<contractID>, <tokenID>)
 [
   {
@@ -31,6 +45,7 @@ This demo shows off two proof of concept functions: [getOwnedNFTs](src/getOwnedN
     "balance": 1
   }
 ]
+
 ```
 
 ### `getOwnedNFTs`
